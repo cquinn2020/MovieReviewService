@@ -1,0 +1,4 @@
+- program that enables moviegoers to create and manage reviews of moviegoers
+
+- Moviegoer:
+    - case insensitive name
