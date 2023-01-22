@@ -1,10 +1,12 @@
 #ifndef MOVIE_H
 #define MOVIE_H
+#include "MovieReview.h"
 #include <string>
 #include <iostream>
 #include <numeric>
 #include <vector>
 #include <cmath>
+#include <fstream>
 
 class Movie
 {
@@ -14,6 +16,7 @@ private:
     std::string releaseDate;
     std::string movieDescription;
     std::vector<float> ratings;
+    std::vector<MovieReview> movieReviews;
 
 public:
     Movie(std::string movieName,
@@ -30,7 +33,9 @@ public:
     void setReleaseDate(std::string releaseDate);
     std::string getMovieDescription();
     void setMovieDescription(std::string movieDescription);
-    float computeOverallRating();
+    void computeOverallRating();
+    void addMovieReview(MovieReview &movieReview);
+    void deleteMovieReview(MovieReview &movieReview);
 };
 
 #endif
