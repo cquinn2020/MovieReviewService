@@ -36,6 +36,8 @@ public:
     void computeOverallRating();
     void addMovieReview(MovieReview &movieReview);
     void deleteMovieReview(MovieReview &movieReview);
+    void printMovieDetailsAndReviews();
+    void printMovieDetails();
 };
 
 #endif

@@ -1,8 +1,8 @@
 #include "MovieReview.h"
 
-MovieReview::MovieReview(User *user, float rating, std::string reviewText, std::string movieName)
+MovieReview::MovieReview(std::string reviewerName, float rating, std::string reviewText, std::string movieName)
 {
-    this->user = user;
+    this->reviewerName = reviewerName;
     this->rating = rating;
     this->reviewText = reviewText;
     this->movieName = movieName;
@@ -18,14 +18,14 @@ void MovieReview::setRating(float rating)
     this->rating = rating;
 }
 
-User *MovieReview::getUser()
+void ::MovieReview::setReviewerName(std::string reviewerName)
 {
-    return this->user;
+    this->reviewerName = reviewerName;
 }
 
-void MovieReview::setUser(User *user)
+std::string MovieReview::getReviewerName()
 {
-    this->user = user;
+    return this->reviewerName;
 }
 
 void MovieReview::setName(std::string movieName)

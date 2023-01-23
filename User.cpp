@@ -1,6 +1,6 @@
 #include "User.h"
 #include "MovieReview.h"
-
+#include "Movie.h"
 User::User(std::string name)
 {
     this->name = name;
@@ -16,44 +16,22 @@ void User::setName(std::string name)
     this->name = name;
 }
 
-void User::reviewMovie(const std::string &title, float rating)
-{
-    reviewedMovies[title] = rating;
-}
-
 void User::printUserDetails()
 {
-    std::cout << "User Name: " << this->getName() << std::endl;
     for (auto it = reviewedMovies.begin(); it != reviewedMovies.end(); ++it)
     {
         std::cout << it->first << ": " << it->second << std::endl;
     }
 }
 
-void User::addMovieReview(MovieReview &movieReview)
+void User::addMovieReview(std::string movieName)
 {
-    this->movieReviews.push_back(movieReview);
+    moviesReviewed.push_back(movieName);
 }
 
-MovieReview *User::getMovieReview(std::string movieName)
+std::vector<std::string> User::getMoviesReviewed()
 {
-    for (auto &movieReview : movieReviews)
-    {
-        if (movieReview.getName() == movieName)
-        {
-            return &movieReview;
-        }
-    }
-    return nullptr;
-}
-
-void User::printAllMovieReviews()
-{
-    std::cout << this->getName() << std::endl; // authors name
-    for (auto &movieReview : movieReviews)
-    {
-        movieReview.printReview();
-    }
+    return moviesReviewed;
 }
 
 User::~User()
@@ -90,7 +68,21 @@ void UserManager::addUser(User &user)
     this->users.push_back(user);
 }
 
-bool User::hasReviewedMovie(const std::string &title)
+void UserManager::loadUsers()
 {
-    return reviewedMovies.find(title) != reviewedMovies.end();
+    std::ifstream file("data/users.txt");
+    std::string line;
+    while (std::getline(file, line))
+    {
+        User user(line);
+        this->addUser(user);
+    }
+}
+
+void UserManager::printAllUsers()
+{
+    for (auto &user : users)
+    {
+        user.printUserDetails();
+    }
 }

@@ -6,16 +6,17 @@
 class MovieReview
 {
 private:
-    User *user;
     float rating;
     std::string reviewText;
     std::string movieName;
+    std::string reviewerName;
 
 public:
-    MovieReview(User *user,
-                float rating,
-                std::string reviewText,
-                std::string name);
+    MovieReview(
+        std::string reviewerName,
+        float rating,
+        std::string reviewText,
+        std::string name);
     ~MovieReview();
 
     User *getUser();
@@ -27,6 +28,8 @@ public:
     void setReviewText(std::string reviewText);
     std::string getReviewText();
     void printReview();
+    std::string getReviewerName();
+    void setReviewerName(std::string reviewerName);
 };
 
 #endif

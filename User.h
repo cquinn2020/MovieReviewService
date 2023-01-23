@@ -4,6 +4,7 @@
 #include <unordered_map>
 #include <iostream>
 #include <vector>
+#include <fstream>
 
 class MovieReview;
 
@@ -12,7 +13,7 @@ class User
 private:
     std::string name;
     std::unordered_map<std::string, float> reviewedMovies;
-    std::vector<MovieReview> movieReviews;
+    std::vector<std::string> moviesReviewed;
 
 public:
     User(std::string name);
@@ -21,12 +22,9 @@ public:
 
     std::string getName();
     void setName(std::string);
-    void reviewMovie(const std::string &title, float rating);
     void printUserDetails();
-    void addMovieReview(MovieReview &movieReview);
-    MovieReview *getMovieReview(std::string movieName);
-    void printAllMovieReviews();
-    bool hasReviewedMovie(const std::string &title);
+    void addMovieReview(std::string movieName);
+    std::vector<std::string> getMoviesReviewed();
 };
 
 class UserManager
@@ -41,6 +39,8 @@ public:
     void addUser(User &user);
     User *getCurrentUser();
     void setCurrentUser(User *user);
+    void loadUsers();
+    void printAllUsers();
 };
 
 #endif

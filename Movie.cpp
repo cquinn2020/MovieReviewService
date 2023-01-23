@@ -70,3 +70,24 @@ void Movie::deleteMovieReview(MovieReview &movieReview)
         }
     }
 }
+
+void Movie::printMovieDetailsAndReviews()
+{
+    std::cout << "Movie Name: " << this->movieName << std::endl;
+    std::cout << "Release Date: " << this->releaseDate << std::endl;
+    std::cout << "Movie Description: " << this->movieDescription << std::endl;
+    std::cout << "Movie Rating: " << this->overallRating << std::endl;
+    std::cout << "Movie Reviews: " << std::endl;
+    for (auto movieReview : this->movieReviews)
+    {
+        movieReview.printReview();
+    }
+}
+
+void Movie::printMovieDetails()
+{
+    std::cout << "Movie Name: " << this->movieName << std::endl;
+    std::cout << "Release Date: " << this->releaseDate << std::endl;
+    std::cout << "Movie Description: " << this->movieDescription << std::endl;
+    std::cout << "Movie Rating: " << this->overallRating << std::endl;
+}

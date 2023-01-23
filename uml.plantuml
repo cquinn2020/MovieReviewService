@@ -1,0 +1,87 @@
+@startuml
+
+class User {
+    - String name
+    - unordered_map<String, float> reviewedMovies
+    - vector<MovieReviews> movieReviews
+    + User(String name)
+    + User()
+    + ~User()
+    + String getName()
+    + void setName(String)
+    + void reviewMovie(String title, float rating)
+    + void printUserDetails()
+    + void addMovieReview(MovieReview movieReview)
+    + MovieReview getMovieReview(String movieName)
+    + void printAllMovieReviews()
+    + bool hasReviewedMovie(String title)
+}
+
+class UserManager {
+    - vector<User> users
+    - User *currentUser
+    + UserManager()
+    + ~UserManager()
+    + User *getUser(String name)
+    + void addUser(User &user)
+    + User *getCurrentUser()
+    + void setCurrentUser(User *user)
+}
+
+class Movie {
+    - String movieName
+    - float overallRating
+    - String releaseDate
+    - String movieDescription
+    - vector<float> ratings
+    - vector<MovieReview> movieReviews
+    + Movie(String movieName, String releaseDate, String movieDescription)
+    + ~Movie()
+    + String getMovieName()
+    + void setMovieName(String movieName)
+    + float getMovieRating()
+    + void addMovieRating(float movieRating)
+    + String getReleaseDate()
+    + void setReleaseDate(String releaseDate)
+    + String getMovieDescription()
+    + void setMovieDescription(String movieDescription)
+    + void computeOverallRating()
+    + void addMovieReview(MovieReview &movieReview)
+    + void deleteMovieReview(MovieReview &movieReview)
+}
+
+
+
+class MovieCollection {
+    - unordered_map<String, Movie *> movies
+    + MovieCollection()
+    + ~MovieCollection()
+    + void addMovie(Movie &movie)
+    + void removeMovie(String movieName)
+    + Movie *getMovie(String movieName)
+    + vector<Movie> getAllMovies()
+    + void saveToFile(String filename)
+    + void loadFromFile(String filename)
+    + bool contains(String movieName)
+}
+
+
+class MovieReview {
+    - User *user
+    - float rating
+    - String reviewText
+    - String movieName
+    + MovieReview(User *user, float rating, String reviewText, String name)
+    + ~MovieReview()
+    + User *getUser()
+    + void setUser(User *user)
+    + float getRating()
+    + void setRating(float rating)
+    + void setName(String name)
+    + String getName()
+    + void setReviewText(String reviewText)
+    + String getReviewText()
+    + void printReview()
+}
+
+@enduml
